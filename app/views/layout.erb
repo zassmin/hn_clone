@@ -18,7 +18,13 @@
   <title></title>
 </head>
 <body>
-  <a href='/user/new'>Sign Up</a>
+  <% if current_user %>
+    <a href='/logout'>Log Out</a>
+    <a href='/user/<%= current_user.id%>'>Profile</a>
+  <%else%> 
+    <a href='/user/new'>Sign Up</a>
+    <a href='/user/login'>Log In</a>
+  <%end%>
   <%= yield %>
 </body>
 </html>

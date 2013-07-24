@@ -14,6 +14,32 @@ end
 
 post '/user/new' do
   User.create(params[:user])
+
+  redirect '/'
+end
+
+get '/user/login' do
+  erb :login
+end
+
+post '/user/login' do
+  @user = User.find_by_username(params[:user][:username])
+
+  if @user
+    if @user.password == params[:user][:password]
+      login_user(@user)
+      redirect "/"
+    else
+      redirect '/user/login'
+    end
+  else
+    redirect '/user/login'
+  end
+end
+
+get '/logout' do
+  logout
+  redirect '/'
 end
 
 get '/user/:user_id' do

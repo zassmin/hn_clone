@@ -3,4 +3,11 @@
   <% @user.posts.each do |post| %>
     <h3><a href='/post/<%= post.id %>'><%= post.title %></a></h3>
   <% end %>
+  <% unless @user.comments.empty? %>
+    <h3>Comments</h3> 
+    <% @user.comments.each do |comment| %>
+      <p><%= comment.post.title %></p>
+      <p><%= comment.content %></p>
+    <% end %>
+  <%end%>
 </div>
