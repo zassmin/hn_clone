@@ -1,0 +1,6 @@
+<div class='container'>
+  <h1><%= @user.username %></h1>
+  <% @user.posts.each do |post| %>
+    <h3><a href='/post/<%= post.id %>'><%= post.title %></a></h3>
+  <% end %>
+</div>
