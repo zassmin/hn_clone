@@ -1,5 +1,9 @@
 <div class='container'>
   <h1><%= @post.title %></h1>
   <p><%= @post.content %></p>
-  
+  <h3>Comments</h3>
+  <% @post.comments.each do |comment| %>
+    <p><%= comment.content %></p>
+    <p><%= User.find(comment.user_id).username %></p>
+  <% end %>
 </div>
