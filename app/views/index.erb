@@ -1,5 +1,11 @@
 <div class="container">
   <% @posts.each do |post| %>
-    <h3><a href='/post/<%= post.id %>'><%=post.title %></a></h3>
+    <h3>
+      <a href='/post/<%= post.id %>'><%=post.title %></a>
+      <span class='votes'><%= post.votes %></span>
+      <% if current_user %>
+        <a class='vote' href='/post/<%= post.id %>/vote'>Vote</a>
+      <% end %>
+    </h3>
   <% end %>
 </div>

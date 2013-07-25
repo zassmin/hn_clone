@@ -46,3 +46,17 @@ get '/user/:user_id' do
   @user = User.find(params[:user_id])
   erb :profile
 end
+
+post '/post/:id/vote' do
+  post = Post.find(params[:id])
+  PostVote.create(post: post, user: current_user)
+  votes = post.votes
+  post = Post.update(post.id, votes: (votes + 1))
+  post.votes.to_s
+end
+
+post '/comment/:id/vote' do
+  comment = Comment.find(params[:id])
+  CommentVote.create(comment: comment, user: current_user)
+  comment.update(votes: comment.votes + 1)
+end
