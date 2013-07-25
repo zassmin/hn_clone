@@ -1,5 +1,5 @@
 get '/' do
-  @posts = Post.all
+  @posts = Post.order('votes DESC')
   erb :index
 end
 
